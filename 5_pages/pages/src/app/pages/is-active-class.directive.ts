@@ -1,0 +1,22 @@
+import { Directive, ElementRef, Input } from '@angular/core';
+
+@Directive({
+  selector: '[appIsActiveClass]'
+})
+export class IsActiveClassDirective {
+
+  constructor(private element: ElementRef) { }
+
+  @Input('appIsActiveClass') set classActivity(classObj: any) {
+    for (let key in classObj)
+    {
+      if (classObj[key]) {
+        this.element.nativeElement.classList.add(key);
+      } else {
+        this.element.nativeElement.classList.remove(key);
+      }
+    }
+    
+  }  
+
+}
