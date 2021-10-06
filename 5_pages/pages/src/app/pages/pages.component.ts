@@ -9,10 +9,15 @@ import { PaginationDirective } from './pagination.directive';
 export class PagesComponent implements OnInit {
   currentPage = 0;
   maxPerPage = 5;
+  displayPages: number[]=[];
 
   constructor() { }
 
   ngOnInit(): void {
+    for(let i=0; i<= this.maxPerPage; i++)
+    {
+      this.displayPages.push(i);
+    }
   }
 
   images = [
@@ -68,6 +73,7 @@ export class PagesComponent implements OnInit {
 
   pageIncrease() {
     this.currentPage += 1;
+    console.log('displayPages', this.displayPages)
     if (this.currentPage > 5) {
       console.log('this ran')
     }
