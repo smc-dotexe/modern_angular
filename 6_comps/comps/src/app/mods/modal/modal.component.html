@@ -1,0 +1,26 @@
+<div (click)="onCloseClick()" class="ui dimmer visible active">
+    <!-- to stop event bubbling (clicking anywhere in the div 
+        can close the model), $event.stopPropagation() is added -->
+    <div 
+        (click)="$event.stopPropagation()"
+        class="ui modal visible active"
+    >
+        <i (click)="onCloseClick()" class="close icon"></i>
+        <div class="header">
+            <ng-content select="[modalTitle]"></ng-content>
+        </div>
+        <div class="content">
+            <ng-content></ng-content>
+        </div>
+        <div class="actions actions-default">
+            <button (click)="onCloseClick()" class="ui button">Ok</button>
+        </div>
+        <!-- If custom content under [modalFooter] is passed, then display it here
+            otherwise, div with the class 'actions-default' will be displayed.
+            (handled by css in modal.component.css)
+        -->
+        <div class="actions">
+            <ng-content select="[modalFooter]"></ng-content>
+        </div>
+    </div>
+</div>

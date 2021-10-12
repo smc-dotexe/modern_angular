@@ -1,0 +1,16 @@
+/* :empty means if there is no children in the element */
+.actions:empty {
+    display: none;
+}
+
+.actions-default {
+    display: none;
+}
+
+/* if we find an element that has a class of .actions and is empty &&
+    if there is a sibling element with the class of .actions-default
+    then apply to .actions-default = display:block;
+*/
+.actions:empty + .actions-default {
+    display: block;
+}
