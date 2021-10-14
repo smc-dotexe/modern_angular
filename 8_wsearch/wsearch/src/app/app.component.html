@@ -1,4 +1,6 @@
 
 <!-- (submitted) is the child event communicating to the parent comp(app.component.ts)-->
-<app-search-bar (submitted)="onTerm($event)"></app-search-bar>
-<app-page-list></app-page-list>
+<div class="container">
+    <app-search-bar (submitted)="onTerm($event)"></app-search-bar>
+    <app-page-list *ngIf="pages.length" [pages]="pages"></app-page-list>
+</div>
