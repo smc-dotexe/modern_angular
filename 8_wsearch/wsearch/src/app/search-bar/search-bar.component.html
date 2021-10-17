@@ -1,10 +1,12 @@
 <div class="box">
     <form (submit)="onFormSubmit($event)">
+        <label class="label">Search Term:</label>
         <input 
             placeholder="Enter Search Term"
             class="input"
             (input)="term = $any($event.target).value"
         />
+        <label class="label"># of Search Results: </label>
     </form>
 
 </div>
