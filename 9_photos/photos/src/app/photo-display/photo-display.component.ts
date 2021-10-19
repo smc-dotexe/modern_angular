@@ -7,9 +7,10 @@ import { GetPhotoService } from '../get-photo.service';
   styleUrls: ['./photo-display.component.css']
 })
 export class PhotoDisplayComponent implements OnInit {
-  imageUrl='';
+  imageUrl: string = '';
 
   constructor(private getPhotoService: GetPhotoService) {
+
     this.fetchPhoto();
    }
 

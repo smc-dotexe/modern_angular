@@ -11,7 +11,7 @@ interface UnsplashResponse {
   providedIn: 'root'
 })
 export class GetPhotoService {
-  apiKey = 'z86qkGbPCKDKDPNvVrqrXExd_PyA333OtLJjZKUmLAY';
+  apiKey:string = 'z86qkGbPCKDKDPNvVrqrXExd_PyA333OtLJjZKUmLAY';
   constructor(private http: HttpClient) { }
 
   randomPhoto() {
