@@ -1,9 +1,30 @@
 import { Injectable } from "@angular/core";
-import { HttpClient } from "@angular/common/http";
+import { AbstractControl, FormControl, ValidationErrors, Validator } from "@angular/forms";
+import { map, catchError } from 'rxjs/operators';
+import { of } from "rxjs";
+import { AuthService } from "../auth.service";
 
 @Injectable({
     providedIn: 'root' // enables class to use the dependancy injection system
 })
-export class UniqueUsername {
-    constructor(private http: HttpClient){}
+export class UniqueUsername implements Validator {
+    constructor(private authService: AuthService){}
+
+    validate = (control: AbstractControl) => {
+        const { value } = control;
+        return this.authService.usernameAvailable(value).pipe(
+            map(() => {
+                return null;
+            }),
+            catchError((err) => {
+                console.log(err);
+                if (err.error.username) {
+                    return of({ nonUniqueUsername: true }); // 'of' is a shortcut to create a new observable
+                } else {
+                    return of({ noConnection: true });
+                }
+            })
+        );
+    }
+
 }

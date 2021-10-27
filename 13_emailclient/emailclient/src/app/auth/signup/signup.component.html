@@ -4,13 +4,18 @@
     [formGroup]="authForm"
     class="ui form"
 >
-    <div class="field">
+    <!-- <div class="field">
         <label>Username</label>
         <input formControlName="username" />
-    </div>
-
+    </div>-->
+    
+    <app-input 
+        label="Username"
+        [control]="$any(authForm.get('username'))"
+    >
+    </app-input>
     {{ authForm.get('username')?.errors | json }}
-
+    
     <div class="field">
         <label>Password</label>
         <input formControlName="password" />
