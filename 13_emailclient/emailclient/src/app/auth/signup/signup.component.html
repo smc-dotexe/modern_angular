@@ -3,34 +3,44 @@
 <form 
     [formGroup]="authForm"
     class="ui form"
+    (ngSubmit)="onSubmit()"
 >
-    <!-- <div class="field">
-        <label>Username</label>
-        <input formControlName="username" />
-    </div>-->
     
     <app-input 
-        label="Username"
+        label="Username" 
         [control]="$any(authForm.get('username'))"
-    >
+        inputType="text">
     </app-input>
-    {{ authForm.get('username')?.errors | json }}
-    
-    <div class="field">
-        <label>Password</label>
-        <input formControlName="password" />
-    </div>
-    {{ authForm.get('password')?.errors | json }}
+    <app-input 
+        label="Password" 
+        [control]="$any(authForm.get('password'))"
+        inputType="password">
+    </app-input>
+    <app-input 
+        label="Password Confirmation" 
+        [control]="$any(authForm.get('passwordConfirmation'))"
+        inputType="password"> 
+    </app-input>
 
-    <div class="field">
-        <label>Confirm Password</label>
-        <input formControlName="passwordConfirmation" />
-    </div>
-    {{ authForm.get('passwordConfirmation')?.errors | json }}
+    <ng-container *ngIf="authForm.errors">
+        <div 
+            class="ui red basic label" 
+            *ngIf="
+                authForm.get('password')!.touched && 
+                authForm.get('passwordConfirmation')!.touched"
+        >
+            <p *ngIf="authForm.errors.passwordsDontMatch">
+                Password and Password Confirmation must match.
+            </p>
+        </div>
+    </ng-container>
 
-    <button class="ui submit button primary" type="submit">
-        Submit
-    </button>
+    <div>
+        <button class="ui submit button primary" type="submit">
+            Submit
+        </button>
+
+    </div>
 
     {{ authForm.errors | json }}
 </form>

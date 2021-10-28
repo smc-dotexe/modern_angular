@@ -9,11 +9,17 @@ import { AbstractControl, Form, FormControl, FormGroup, FormGroupDirective } fro
 export class InputComponent implements OnInit {
   @Input() label: string = '';
   @Input() control = new FormControl('');
+  @Input() inputType: string = '';
 
   constructor() {
   }
 
   ngOnInit(): void {
+  }
+
+  showErrors() {
+    const { dirty, touched, errors } = this.control;
+    return dirty && touched && errors;
   }
 
 }
