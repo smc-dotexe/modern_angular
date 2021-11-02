@@ -17,7 +17,6 @@ export class UniqueUsername implements Validator {
                 return null;
             }),
             catchError((err) => {
-                console.log(err);
                 if (err.error.username) {
                     return of({ nonUniqueUsername: true }); // 'of' is a shortcut to create a new observable
                 } else {

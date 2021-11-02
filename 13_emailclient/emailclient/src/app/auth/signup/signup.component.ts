@@ -15,13 +15,13 @@ export class SignupComponent implements OnInit {
       Validators.required,
       Validators.minLength(3),
       Validators.maxLength(20),
-      Validators.pattern(/^[a-z0-9]+$/),
+      Validators.pattern(/^[a-z0-9]+$/)
     ], [this.uniqueUsername.validate]
     ),
     password: new FormControl('', [
       Validators.required,
       Validators.minLength(4),
-      Validators.maxLength(20),
+      Validators.maxLength(20)
     ]),
     passwordConfirmation: new FormControl('', [
       Validators.required,
@@ -44,7 +44,18 @@ export class SignupComponent implements OnInit {
       return;
     
     this.authService.signup(this.authForm.value)
-      .subscribe(response => console.log(response))
+      .subscribe({
+        next: (response) => {
+          
+        },
+        error: (err) => {
+          if (!err.status) {
+            this.authForm.setErrors({ noConnection: true });
+          } else {
+            this.authForm.setErrors({ unknownError: true });
+          }
+        }
+      });
   }
 
 }
