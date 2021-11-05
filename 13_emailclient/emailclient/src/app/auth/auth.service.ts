@@ -31,7 +31,7 @@ interface SignInCredentials {
 })
 export class AuthService {
   rootUrl = 'https://api.angular-email.com';
-  signedin$ = new BehaviorSubject(false); // $ is naming conventions for Observables
+  signedin$ = new BehaviorSubject<boolean | null>(null); // $ is naming conventions for Observables
 
   constructor(private http: HttpClient) { }
 
