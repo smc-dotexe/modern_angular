@@ -1,7 +1,5 @@
 import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
-import { EmailService } from '../email.service';
-import { switchMap } from 'rxjs/operators';
 import { Email } from '../email';
 
 @Component({
@@ -14,10 +12,10 @@ export class EmailShowComponent implements OnInit {
 
   constructor(
     private route: ActivatedRoute,
-    private emailService: EmailService
   ) { 
-    this.route.data.subscribe((data) => {
-      console.log(data);
+    this.email = route.snapshot.data.email; // fallback if component loads email before template
+    this.route.data.subscribe(({ email }) => {
+      this.email = email;
     })
   }
 

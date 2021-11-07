@@ -8,8 +8,9 @@ import { AbstractControl, Form, FormControl, FormGroup, FormGroupDirective } fro
 })
 export class InputComponent implements OnInit {
   @Input() label: string = '';
-  @Input() control = new FormControl('');
+  @Input() control = new FormControl('').value;
   @Input() inputType: string = '';
+  @Input() controlType = 'input';
 
   constructor() {
   }
